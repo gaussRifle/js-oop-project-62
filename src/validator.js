@@ -1,7 +1,7 @@
 import StringSchema from './stringSchema.js';
 import NumberSchema from './numberSchema.js';
 import ArraySchema from './arraySchema.js';
-import ObjectSchema from './objectSchema';
+import ObjectSchema from './objectSchema.js';
 
 class Validator {
   constructor(customValidators = {}) {

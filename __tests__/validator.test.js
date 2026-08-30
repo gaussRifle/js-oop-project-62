@@ -1,5 +1,7 @@
 import { expect, test, describe } from 'vitest';
-import validator from '../index.js';
+import Validator from '../index.js';
+
+const validator = new Validator();
 
 describe('string validation', () => {
   const schema = validator.string();
@@ -64,6 +66,7 @@ describe('number validation', () => {
     expect(schema.isValid(-1)).toBeFalsy();
     expect(schema.isValid(-3)).toBeFalsy();
     expect(schema.isValid(10)).toBeTruthy();
+    expect(schema.isValid(null)).toBeTruthy();
   });
 
   test('validator range', () => {

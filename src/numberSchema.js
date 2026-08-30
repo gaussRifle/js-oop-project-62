@@ -2,7 +2,7 @@ import BaseSchema from './baseSchema';
 
 class NumberSchema extends BaseSchema {
   positive() {
-    this.schema.positiveRule = (value) => value > 0;
+    this.schema.positiveRule = (value) => !!value && value > 0;
 
     return new NumberSchema(this.schema);
   }
