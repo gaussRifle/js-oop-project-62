@@ -1,5 +1,7 @@
 // @ts-check
 
-import half from "./src/half.js";
+import Validator from './src/vallidator.js';
 
-export default half;
+const v = new Validator();
+
+export default v;
