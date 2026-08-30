@@ -1,15 +1,6 @@
-class StringSchema {
-  constructor(schema = {}) {
-    this.schema = schema;
-  }
+import BaseSchema from './baseSchema';
 
-  required() {
-    this.schema.requiredRule = (value) =>
-      value !== null && value !== undefined && value !== '';
-
-    return new StringSchema(this.schema);
-  }
-
+class StringSchema extends BaseSchema {
   minLength(length) {
     this.schema.minLengthRule = (value) => value.length >= length;
 

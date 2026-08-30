@@ -1,15 +1,6 @@
-class NumberSchema {
-  constructor(schema = {}) {
-    this.schema = schema;
-  }
+import BaseSchema from './baseSchema';
 
-  required() {
-    this.schema.requiredRule = (value) =>
-      value !== null && value !== undefined && value !== '';
-
-    return new NumberSchema(this.schema);
-  }
-
+class NumberSchema extends BaseSchema {
   positive() {
     this.schema.positiveRule = (value) => value > 0;
 

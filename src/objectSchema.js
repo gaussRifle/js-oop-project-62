@@ -1,8 +1,6 @@
-class ObjectSchema {
-  constructor(schema = {}) {
-    this.schema = schema;
-  }
+import BaseSchema from './baseSchema';
 
+class ObjectSchema extends BaseSchema {
   shape(schema) {
     this.schema = schema;
   }

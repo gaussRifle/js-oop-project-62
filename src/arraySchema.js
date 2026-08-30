@@ -1,14 +1,6 @@
-class ArraySchema {
-  constructor(schema = {}) {
-    this.schema = schema;
-  }
+import BaseSchema from './baseSchema';
 
-  required() {
-    this.schema.requiredRule = (value) => Array.isArray(value);
-
-    return new ArraySchema(this.schema);
-  }
-
+class ArraySchema extends BaseSchema {
   sizeof(length) {
     this.schema.sizeofRule = (value) =>
       Array.isArray(value) && value.length === length;
