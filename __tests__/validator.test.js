@@ -103,3 +103,19 @@ describe('number validation', () => {
     expect(schema.isValid([2])).toBeFalsy();
   });
 });
+
+describe('object validation', () => {
+  test('object', () => {
+    const schema = validator.object();
+
+    schema.shape({
+      name: validator.string().required(),
+      age: validator.number().positive(),
+    });
+
+    expect(schema.isValid({ name: 'kolya', age: 100 })).toBeTruthy();
+    expect(schema.isValid({ name: 'maya', age: null })).toBeFalsy();
+    expect(schema.isValid({ name: '', age: null })).toBeFalsy();
+    expect(schema.isValid({ name: 'ada', age: -5 })).toBeFalsy();
+  });
+});
