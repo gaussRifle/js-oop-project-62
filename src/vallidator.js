@@ -1,5 +1,6 @@
 import StringSchema from './stringSchema.js';
 import NumberSchema from './numberSchema.js';
+import ArraySchema from './arraySchema.js';
 
 class Validator {
   string() {
@@ -8,6 +9,10 @@ class Validator {
 
   number() {
     return new NumberSchema();
+  }
+
+  array() {
+    return new ArraySchema();
   }
 }
 

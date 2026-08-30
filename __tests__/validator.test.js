@@ -76,3 +76,30 @@ describe('number validation', () => {
     expect(schema.isValid(10)).toBeTruthy();
   });
 });
+
+describe('number validation', () => {
+  test('validator not required', () => {
+    const schema = validator.array();
+
+    expect(schema.isValid('')).toBeTruthy();
+    expect(schema.isValid(null)).toBeTruthy();
+    expect(schema.isValid(undefined)).toBeTruthy();
+  });
+
+  test('validator required', () => {
+    const schema = validator.array().required();
+
+    expect(schema.isValid([])).toBeTruthy();
+    expect(schema.isValid([2])).toBeTruthy();
+    expect(schema.isValid(undefined)).toBeFalsy();
+    expect(schema.isValid(null)).toBeFalsy();
+    expect(schema.isValid('')).toBeFalsy();
+  });
+
+  test('validator sizeof', () => {
+    const schema = validator.array().sizeof(2);
+
+    expect(schema.isValid([2, 1])).toBeTruthy();
+    expect(schema.isValid([2])).toBeFalsy();
+  });
+});
