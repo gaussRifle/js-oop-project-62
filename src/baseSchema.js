@@ -12,11 +12,21 @@ class BaseSchema {
   }
 
   test(name, ...args) {
-    const fn = this.customValidators[name];
-    if (!fn) {
-      throw new Error(`Unknown validator: ${name}`);
+    this.schema.customRules = this.schema.customRules || [];
+    this.schema.customRules.push({ name, args });
+
+    return this;
+  }
+
+  checkCustomRules(value) {
+    if (!this.schema.customRules) {
+      return true;
     }
-    return this.addCheck(name, (value) => fn(value, ...args));
+
+    return this.schema.customRules.every(({ name, args }) => {
+      const fn = this.customValidators[name];
+      return typeof fn === 'function' ? fn(value, ...args) : true;
+    });
   }
 }
 

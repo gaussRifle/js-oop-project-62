@@ -26,6 +26,10 @@ class StringSchema extends BaseSchema {
       return false;
     }
 
+    if (!this.checkCustomRules(value)) {
+      return false;
+    }
+
     return true;
   }
 }

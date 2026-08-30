@@ -26,6 +26,10 @@ class NumberSchema extends BaseSchema {
       return false;
     }
 
+    if (!this.checkCustomRules(value)) {
+      return false;
+    }
+
     return true;
   }
 }

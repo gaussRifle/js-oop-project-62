@@ -119,3 +119,23 @@ describe('object validation', () => {
     expect(schema.isValid({ name: 'ada', age: -5 })).toBeFalsy();
   });
 });
+
+describe('addValidator', () => {
+  test('addValidator', () => {
+    const fn = (value, start) => value.startsWith(start);
+    validator.addValidator('string', 'startWith', fn);
+
+    const schema3 = validator.string().test('startWith', 'H');
+
+    expect(schema3.isValid('exlet')).toBeFalsy();
+    expect(schema3.isValid('Hexlet')).toBeTruthy();
+
+    const fnMin = (value, min) => value >= min;
+    validator.addValidator('number', 'min', fnMin);
+
+    const schema4 = validator.number().test('min', 5);
+
+    expect(schema4.isValid(4)).toBeFalsy();
+    expect(schema4.isValid(6)).toBeTruthy();
+  });
+});
