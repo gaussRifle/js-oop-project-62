@@ -12,6 +12,8 @@ class ObjectSchema extends BaseSchema {
       const innerSchema = this.schema[key];
 
       isValid = innerSchema.isValid(obj[key]);
+
+      if (!isValid) break;
     }
 
     return isValid;

@@ -2,7 +2,7 @@ import BaseSchema from './baseSchema';
 
 class NumberSchema extends BaseSchema {
   positive() {
-    this.schema.positiveRule = (value) => !!value && value > 0;
+    this.schema.positiveRule = (value) => value > 0;
 
     return new NumberSchema(this.schema);
   }
@@ -16,6 +16,10 @@ class NumberSchema extends BaseSchema {
   isValid(value) {
     if (this.schema.requiredRule && !this.schema.requiredRule(value)) {
       return false;
+    }
+
+    if (value === null) {
+      return true;
     }
 
     if (this.schema.positiveRule && !this.schema.positiveRule(value)) {

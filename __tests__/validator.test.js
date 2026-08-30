@@ -66,7 +66,7 @@ describe('number validation', () => {
     expect(schema.isValid(-1)).toBeFalsy();
     expect(schema.isValid(-3)).toBeFalsy();
     expect(schema.isValid(10)).toBeTruthy();
-    expect(schema.isValid(null)).toBeTruthy();
+    expect(schema.isValid(null)).toBe(true);
   });
 
   test('validator range', () => {
@@ -117,7 +117,7 @@ describe('object validation', () => {
     });
 
     expect(schema.isValid({ name: 'kolya', age: 100 })).toBeTruthy();
-    expect(schema.isValid({ name: 'maya', age: null })).toBeFalsy();
+    expect(schema.isValid({ name: 'maya', age: null })).toBeTruthy();
     expect(schema.isValid({ name: '', age: null })).toBeFalsy();
     expect(schema.isValid({ name: 'ada', age: -5 })).toBeFalsy();
   });
